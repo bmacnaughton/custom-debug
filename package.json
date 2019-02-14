@@ -1,5 +1,5 @@
 {
-  "name": "custom-debug",
+  "name": "debug-custom",
   "version": "1.0.0",
   "description": "A thin wrapper around the debug logging package",
   "main": "index.js",
