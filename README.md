@@ -1,10 +1,10 @@
-# custom-debug
+# debug-custom
 
 A thin wrapper on the debug logging package that allows debugging to appear customized for your package.
 
 # Motivation
 
-I didn't like to enter `prefix:level` where `prefix` was required because multiple packages might be using the `debug` package and `prefix` was needed to prevent name conflicts. So I created this thin wrapper around `debug` that allows the user to hide the prefix used to prevent conflicts. custom-debug also makes it easy to add and remove debug levels dynamically under program control.
+I didn't like to enter `prefix:level` where `prefix` was required because multiple packages might be using the `debug` package and `prefix` was needed to prevent name conflicts. So I created this thin wrapper around `debug` that allows the user to hide the prefix used to prevent conflicts. debug-custom also makes it easy to add and remove debug levels dynamically under program control.
 
 # The user experience
 
@@ -22,16 +22,16 @@ const logWarn = debug('my-app:warn')
 const logInfo = debug('my-app:info')
 ```
 
-Using `custom-debug` the package prefix is invisible:
+Using `debug-custom` the package prefix is invisible:
 
 `export MYAPP=error,warn,info`
 
 in code,
 
 ```
-const customDebug = new (require ('custom-debug'))
+const DebugCustom = new (require ('debug-custom'))
 // specify the prefix and options, default settings are 'error,warn'.
-const logger = new CustomDebug('my-app', {settings: process.env.MYAPP_LOG_SETTINGS})
+const logger = new DebugCustom('my-app', {settings: process.env.MYAPP_LOG_SETTINGS})
 
 const logError = logger.make('error')
 const logWarn = logger.make('warn')
