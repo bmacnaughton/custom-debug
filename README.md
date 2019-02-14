@@ -29,7 +29,9 @@ Using `custom-debug`
 in code,
 
 ```
-const logger = new (require ('custom-debug'))('my-app')
+const customDebug = new (require ('custom-debug'))
+// specify the prefix and options, default settings are 'error,warn'.
+const logger = new CustomDebug('my-app', {settings: process.env.MYAPP_LOG_SETTINGS})
 
 const logError = logger.make('error')
 const logWarn = logger.make('warn')
