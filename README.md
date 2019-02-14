@@ -1,6 +1,6 @@
 # custom-debug
 
-A thin wrapper on the debug logging package.
+A thin wrapper on the debug logging package that allows debugging to appear customized for your package.
 
 # Motivation
 
@@ -8,7 +8,7 @@ I didn't like to enter `prefix:level` where `prefix` was required because multip
 
 # The user experience
 
-Using `debug`:
+Using `debug` the package prefix must be repeated for each log level:
 
 `export DEBUG=my-app:error,my-app:warn,my-app:info`
 
@@ -22,7 +22,7 @@ const logWarn = debug('my-app:warn')
 const logInfo = debug('my-app:info')
 ```
 
-Using `custom-debug`
+Using `custom-debug` the package prefix is invisible:
 
 `export MYAPP=error,warn,info`
 
@@ -58,5 +58,8 @@ logger.logLevel = previous
 
 You can also set `logLevel` to an array if you want.
 
+# Final notes
 
+If you need access to the instance of `debug` used it's available as `logger.debug`. This can come in handy for testing.
 
+The prefix you instantiate the `CustomDebug` class should not conflict with other packages using `debug`.
