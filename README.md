@@ -4,7 +4,7 @@ A thin wrapper on the debug logging package.
 
 # Motivation
 
-I didn't like to enter `prefix:category` where `prefix` was required because multiple packages might be using the `debug` package and `prefix` was needed to prevent name conflicts. So I created this thin wrapper around `debug` that allows the user to hide the prefix used to prevent conflicts. custom-debug also makes it easy to add and remove debug levels dynamically under program control.
+I didn't like to enter `prefix:level` where `prefix` was required because multiple packages might be using the `debug` package and `prefix` was needed to prevent name conflicts. So I created this thin wrapper around `debug` that allows the user to hide the prefix used to prevent conflicts. custom-debug also makes it easy to add and remove debug levels dynamically under program control.
 
 # The user experience
 
