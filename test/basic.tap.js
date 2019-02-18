@@ -90,6 +90,11 @@ d3.logLevel = 'x,x,x'
 tap.equal(d3.logLevel, 'x')
 tap.same(pieces(env.DEBUG), pieces('dc3:x'))
 
+// verify that duplicates can't be enabled
+d3.addEnabled('x,x,x')
+tap.equal(d3.logLevel, 'x')
+tap.same(pieces(env.DEBUG), pieces('dc3:x'))
+
 //
 // helper
 //
