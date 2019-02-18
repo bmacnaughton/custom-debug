@@ -8,7 +8,7 @@ const env = process.env
 env.DEBUG_COLORS = 'no'
 env.DEBUG_HIDE_DATE = 'yes'
 
-const DebugCustom = require('../lib/index.js')
+const DebugCustom = require('..')
 const debug = require('debug')
 
 // save the default logger
