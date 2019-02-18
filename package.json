@@ -2,7 +2,7 @@
   "name": "debug-custom",
   "version": "1.0.3",
   "description": "A thin wrapper around the debug logging package",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
