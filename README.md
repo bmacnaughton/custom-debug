@@ -62,8 +62,4 @@ You can also set `logLevel` to an array if you want.
 
 If you need access to the instance of `debug` used it's available as `logger.debug`. This can come in handy for testing.
 
-The prefix you instantiate the `CustomDebug` class should not conflict with other packages using `debug`.
-
-# Known issue
-
-This release only handles comma-delimited, not-space delimited, versions of the `DEBUG` environment variable.
+The prefix used to instantiate the `CustomDebug` class should not conflict with other packages using `debug`, so try to make yours unique. You won't see it unless you look at the DEBUG environment variable.
