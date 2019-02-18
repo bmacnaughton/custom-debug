@@ -95,6 +95,20 @@ d3.addEnabled('x,x,x')
 tap.equal(d3.logLevel, 'x')
 tap.same(pieces(env.DEBUG), pieces('dc3:x'))
 
+// verify that it picks up a custom environment variable
+process.env.MY_CUSTOM_VAR = 'rock,paper,scissors'
+const opts = {
+  envName: 'MY_CUSTOM_VAR',
+  defaultLevels: ''
+}
+const d4 = new DebugCustom('custom', opts)
+tap.equal(d4.logLevel, 'rock,paper,scissors')
+
+// verify that it ignores DEBUG values if there's a custom environment variable
+process.env.DEBUG = 'custom:xyzzy'
+const d5 = new DebugCustom('custom', opts)
+tap.equal(d5.logLevel, 'rock,paper,scissors')
+
 //
 // helper
 //
