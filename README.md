@@ -29,8 +29,8 @@ Using `debug-custom` the package prefix is invisible:
 in code,
 
 ```
-const DebugCustom = new (require ('debug-custom'))
-// specify the prefix and options, default settings are 'error,warn'.
+const DebugCustom = require ('debug-custom')
+// specify the prefix and options, default enabled settings are 'error,warn'.
 const logger = new DebugCustom('my-app', {defaultLevels: process.env.MYAPP_LOG_SETTINGS})
 
 const logError = logger.make('error')
