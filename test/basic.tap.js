@@ -11,9 +11,6 @@ env.DEBUG_HIDE_DATE = 'yes'
 const DebugCustom = require('..')
 const debug = require('debug')
 
-// save the default logger
-const debugLog = debug.log
-
 // make a couple custom debug loggers
 const d = new DebugCustom('dc')
 const d1 = new DebugCustom('dc1', {defaultLevels: 'xyzzy'})
@@ -95,23 +92,39 @@ d3.addEnabled('x,x,x')
 tap.equal(d3.logLevel, 'x')
 tap.same(pieces(env.DEBUG), pieces('dc3:x'))
 
+delete env.DEBUG
+const d4 = new DebugCustom('dc4');
+
+// verify that arrays of strings are allowed
+d4.addEnabled(['xyzzy']);
+tap.equal(d4.logLevel, 'error,warn,xyzzy');
+tap.same(pieces(env.DEBUG), pieces('dc4:error,dc4:warn,dc4:xyzzy'));
+
+d4.removeEnabled(['warn', 'xyzzy']);
+tap.equal(d4.logLevel, 'error');
+tap.same(pieces(env.DEBUG), pieces('dc4:error'));
+
+// verify that an illegal argument is handled
+tap.equal(d4.addEnabled(1), undefined);
+tap.equal(d4.removeEnabled({}), undefined);
+
 // verify that it picks up a custom environment variable
 process.env.MY_CUSTOM_VAR = 'rock,paper,scissors'
 const opts = {
   envName: 'MY_CUSTOM_VAR',
   defaultLevels: ''
 }
-const d4 = new DebugCustom('custom', opts)
-tap.equal(d4.logLevel, 'rock,paper,scissors')
+const d5 = new DebugCustom('custom', opts)
+tap.equal(d5.logLevel, 'rock,paper,scissors')
 
 // verify that it ignores DEBUG values if there's a custom environment variable
 process.env.DEBUG = 'custom:xyzzy'
-const d5 = new DebugCustom('custom', opts)
-tap.equal(d5.logLevel, 'rock,paper,scissors')
+const d6 = new DebugCustom('custom', opts)
+tap.equal(d6.logLevel, 'rock,paper,scissors')
 
 //
 // helper
 //
-function pieces(s) {
+function pieces (s) {
   return s.split(/[\s,]+/).sort()
 }
