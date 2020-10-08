@@ -1,5 +1,3 @@
-'use strict'
-
 const tap = require('tap')
 
 const env = process.env
@@ -40,14 +38,23 @@ tap.equal(d.logLevel, 'error,warn,info')
 tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn,dc1:xyzzy,dc:info'))
 
 // and that it can be removed correctly
-d.removeEnabled('info')
+d.removeEnabled('info');
 tap.equal(d.logLevel, 'error,warn')
-tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn,dc1:xyzzy'))
+tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn,dc1:xyzzy'));
+
+// see that a new level can be added as an array
+d.addEnabled(['xyzzy']);
+
+// that has correctly reports what is present
+tap.equal(d.has('info'), false);
+tap.equal(d.has('error'), true);
+tap.equal(d.has('xyzzy'), true);
+tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn,dc:xyzzy,dc1:xyzzy'));
 
 // and that the last remaining level can be removed correctly
 d1.removeEnabled('xyzzy')
 tap.equal(d1.logLevel, '')
-tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn'))
+tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn,dc:xyzzy'))
 
 // verify that it makes a logger
 const logger = d.make('error')
