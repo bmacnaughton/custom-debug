@@ -1,5 +1,3 @@
-'use strict'
-
 const tap = require('tap')
 
 // turn these off so it's easy to compare messages.
