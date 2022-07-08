@@ -2,12 +2,16 @@
   "name": "debug-custom",
   "version": "1.1.0",
   "description": "A thin wrapper around the debug logging package",
+  "files": [
+    "lib/index.js"
+  ],
   "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "tap test/*.js --no-coverage"
+    "test": "tap test/*.js --no-coverage",
+    "test:cov": "tap test/*.js --coverage"
   },
   "repository": {
     "type": "git",
@@ -28,9 +32,9 @@
   },
   "homepage": "https://github.com/bmacnaughton/custom-debug#readme",
   "dependencies": {
-    "debug": "^4.1.1"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
-    "tap": "^14.10.8"
+    "tap": "^16.3.0"
   }
 }
