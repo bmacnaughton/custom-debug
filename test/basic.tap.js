@@ -72,6 +72,11 @@ d.logLevel = ', , error ,, warn,'
 tap.equal(d.logLevel, 'error,warn')
 tap.same(pieces(env.DEBUG), pieces('dc:error,dc:warn'))
 
+// verify that logLevel can be set with an array
+d.logLevel = ['error', 'info'];
+tap.equal(d.logLevel, 'error,info');
+tap.same(pieces(env.DEBUG), pieces('dc:error,dc:info'));
+
 // verify that extra spaces and commas in DEBUG are removed
 env.DEBUG = ' dc2:error,, dc2:warn'
 const d2 = new DebugCustom('dc2')
