@@ -14,7 +14,7 @@ Using `debug` the package prefix must be repeated for each log level:
 
 and, in code:
 
-```
+```js
 const debug = require('debug')
 
 const logError = debug('my-app:error')
@@ -28,7 +28,7 @@ Using `debug-custom` the package prefix is invisible:
 
 in code,
 
-```
+```js
 const DebugCustom = require ('debug-custom')
 // specify the prefix and options, default enabled settings are 'error,warn'.
 const logger = new DebugCustom('my-app', {defaultLevels: process.env.MYAPP_LOG_SETTINGS})
@@ -42,14 +42,14 @@ const logInfo = logger.make('info')
 
 And, if you want to enable or disable levels via API, just use
 
-```
+```js
 logger.addEnabled('debug')
 logger.removeEnabled('info')
 ```
 
 If you want to set absolutely (not adding or removing)
 
-```
+```js
 const previous = logger.logLevel
 logger.logLevel = 'error'
 // do some stuff
@@ -57,6 +57,24 @@ logger.logLevel = previous
 ```
 
 You can also set `logLevel` to an array if you want.
+
+And if you want to know if a logger is enabled:
+
+```js
+let previous;
+// if info isn't enabled do so
+if (!logger.has('info')) {
+  previous = logger.logLevel;
+  logger.addEnabled('info');
+}
+
+logInfo('important message');
+
+// if it wasn't enabled restore settings
+if (previous) {
+  logger.logLevel = previous;
+}
+```
 
 # Final notes
 

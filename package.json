@@ -10,8 +10,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "tap test/*.js --no-coverage",
-    "test:cov": "tap test/*.js --coverage"
+    "test": "tap test/*.js --no-coverage  --test-env=DEBUG_HIDE_DATE=yes",
+    "test:cov": "tap test/*.js --coverage  --test-env=DEBUG_HIDE_DATE=yes"
   },
   "repository": {
     "type": "git",
