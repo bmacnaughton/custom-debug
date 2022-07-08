@@ -1,5 +1,5 @@
 {
-  "name": "debug-custom",
+  "name": "@bmacnaughton/debug-custom",
   "version": "1.2.0",
   "description": "A thin wrapper around the debug logging package",
   "files": [
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bmacnaughton/custom-debug.git"
+    "url": "git+https://github.com/bmacnaughton/debug-custom.git"
   },
   "keywords": [
     "log",
@@ -28,9 +28,9 @@
   "author": "Bruce A. MacNaughton",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bmacnaughton/custom-debug/issues"
+    "url": "https://github.com/bmacnaughton/debug-custom/issues"
   },
-  "homepage": "https://github.com/bmacnaughton/custom-debug#readme",
+  "homepage": "https://github.com/bmacnaughton/debug-custom#readme",
   "dependencies": {
     "debug": "^4.3.4"
   },
