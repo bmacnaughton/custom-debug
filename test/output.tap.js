@@ -11,8 +11,8 @@ const debug = require('debug');
 
 const d1 = new DebugCustom('dc-test');
 
-// for some reason, a timestamp is added when run with coverage. so
-// ignore it if present.
+// if run with coverage a timestamp is present unless DEBUG_HIDE_DATE is
+// set on the tap command line. so ignore it if present.
 const rePrefix = /(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z )?/.toString().slice(1, -1);
 
 // verify the logger is called
