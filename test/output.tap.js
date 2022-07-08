@@ -11,6 +11,10 @@ const debug = require('debug')
 
 const d1 = new DebugCustom('dc-test')
 
+// for some reason, a timestamp is added when run with coverage. so
+// ignore it if present.
+const rePrefix = /(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z )?/.toString().slice(1, -1);
+
 // verify the logger is called
 debug.log = function (...args) {
   if (args.length > 1) {
@@ -18,7 +22,8 @@ debug.log = function (...args) {
     console.log(args);
   }
   tap.equal(args.length, 1);
-  tap.equal(args[0], 'dc-test:error i am the japanese sandman');
+  const re = new RegExp(`${rePrefix}dc-test:error i am the japanese sandman`);
+  tap.match(args[0], re);
 }
 const d1Error = d1.make('error');
 d1Error('i am the japanese sandman');
@@ -36,7 +41,8 @@ d1Disabled('this should not be logged');
 // and enabled.
 debug.log = function (...args) {
   tap.equal(args.length, 1);
-  tap.equal(args[0], 'dc-test:enabled i am enabled');
+  const re = new RegExp(`${rePrefix}dc-test:enabled i am enabled`);
+  tap.match(args[0], re);
 }
 const d1Enabled = d1.make('enabled', true);
 d1Enabled('i am enabled');
@@ -46,7 +52,8 @@ d1.logLevel = 'error,warn';
 // enable plover and it should be called
 debug.log = function (...args) {
   tap.equal(args.length, 1);
-  tap.equal(args[0], 'dc-test:plover i am not');
+  const re = new RegExp(`${rePrefix}dc-test:plover i am not`);
+  tap.match(args[0], re);
 }
 const d1Plover = d1.make('plover');
 d1.addEnabled('plover');
